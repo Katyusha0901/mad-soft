@@ -1,3 +1,3 @@
 export function Onechoice() {
-  return <div></div>;
+  return <div>Onechoice</div>;
 }

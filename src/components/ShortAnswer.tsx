@@ -1,3 +1,3 @@
 export function ShortAnswer() {
-  return <div></div>;
+  return <div>ShortAnswer</div>;
 }

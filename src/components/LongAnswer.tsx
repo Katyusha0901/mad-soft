@@ -1,3 +1,3 @@
 export function LongAnswer() {
-  return <div></div>;
+  return <div>LongAnswer</div>;
 }

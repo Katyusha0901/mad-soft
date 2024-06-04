@@ -1,3 +1,3 @@
 export function Multichoice() {
-  return <div></div>;
+  return <div>Multichoice</div>;
 }
