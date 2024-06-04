@@ -4,6 +4,7 @@ import { questionData } from "./QuestionData";
 import { Multichoice } from "./components/Multichoice";
 import { Onechoice } from "./components/Onechoice";
 import { ShortAnswer } from "./components/ShortAnswer";
+import { LongAnswer } from "./components/LongAnswer";
 
 export function App() {
   const [currentQuestionId, setCurrentQuestionId] = useState<number>(1);
@@ -11,11 +12,15 @@ export function App() {
     return questionData.find((object) => object.id === currentQuestionId);
   }
 
-  return currentQuestionInformation()?.type==="multichoice" ? (<Multichoice/>):(
-    currentQuestionInformation()?.type === 'onechoice' ?(<Onechoice/>):(
-currentQuestionInformation()?.type === 'shortAnswer' ?(<ShortAnswer/>):(
-  
-)
-    )
-  )
+  return currentQuestionInformation()?.type === "multichoice" ? (
+    <Multichoice />
+  ) : currentQuestionInformation()?.type === "onechoice" ? (
+    <Onechoice />
+  ) : currentQuestionInformation()?.type === "shortAnswer" ? (
+    <ShortAnswer />
+  ) : currentQuestionInformation()?.type === "longAnswer" ? (
+    <LongAnswer />
+  ) : (
+    <div></div>
+  );
 }
