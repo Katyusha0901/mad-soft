@@ -1,6 +1,8 @@
 import React from "react";
 import { questionObject } from "../types";
 import { questionData } from "../QuestionData";
+import { useState } from "react";
+import { Answer } from "./Answer";
 
 interface Props {
   currentObject: questionObject | undefined;
@@ -15,10 +17,17 @@ export const Multichoice: React.FC<Props> = ({
   setIsTestCompletedFunction,
   setCurrentQuestionIdFunction,
 }) => {
+  const [answers, setAnswers] = useState<string[] | undefined>(
+    currentObject?.answers
+  );
   return currentQuestionIdState === questionData.length ? (
-    <div>
-      Multichoice
+    <div className="multi">
+      <div className="multi__content">
+        <div className="multi__text"></div>
+        <div className="multi__answers"></div>
+      </div>
       <button
+        className="multi__button-end"
         onClick={() => {
           setIsTestCompletedFunction(true);
         }}
@@ -27,9 +36,17 @@ export const Multichoice: React.FC<Props> = ({
       </button>
     </div>
   ) : (
-    <div>
-      Multichoice
+    <div className="multi">
+      <div className="multi__content">
+        <div className="multi__text">{currentObject?.text}</div>
+        <div className="multi__answers">
+          {currentObject?.answers.map((answer: string, index: number) => {
+            return <Answer answerData={answer} />;
+          })}
+        </div>
+      </div>
       <button
+        className="multi__button-send"
         onClick={() => {
           setCurrentQuestionIdFunction(currentQuestionIdState + 1);
         }}
@@ -37,6 +54,7 @@ export const Multichoice: React.FC<Props> = ({
         Отправить
       </button>
       <button
+        className="multi__button-previous"
         onClick={() => {
           setCurrentQuestionIdFunction(currentQuestionIdState - 1);
         }}
