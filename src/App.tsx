@@ -8,18 +8,31 @@ import { LongAnswer } from "./components/LongAnswer";
 
 export function App() {
   const [currentQuestionId, setCurrentQuestionId] = useState<number>(1);
+
   function currentQuestionInformation() {
     return questionData.find((object) => object.id === currentQuestionId);
   }
 
   return currentQuestionInformation()?.type === "multichoice" ? (
-    <Multichoice />
+    <Multichoice
+      currentObject={currentQuestionInformation()}
+      setCurrentQuestionIdFunction={setCurrentQuestionId}
+    />
   ) : currentQuestionInformation()?.type === "onechoice" ? (
-    <Onechoice />
+    <Onechoice
+      currentObject={currentQuestionInformation()}
+      setCurrentQuestionIdFunction={setCurrentQuestionId}
+    />
   ) : currentQuestionInformation()?.type === "shortAnswer" ? (
-    <ShortAnswer />
+    <ShortAnswer
+      currentObject={currentQuestionInformation()}
+      setCurrentQuestionIdFunction={setCurrentQuestionId}
+    />
   ) : currentQuestionInformation()?.type === "longAnswer" ? (
-    <LongAnswer />
+    <LongAnswer
+      currentObject={currentQuestionInformation()}
+      setCurrentQuestionIdFunction={setCurrentQuestionId}
+    />
   ) : (
     <div></div>
   );
