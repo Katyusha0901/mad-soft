@@ -16,11 +16,34 @@ export const Multichoice: React.FC<Props> = ({
   setIsTestCompletedFunction,
   setCurrentQuestionIdFunction,
 }) => {
+  function takeCurrentObjectInformation() {
+    if (localStorage.getItem(`${currentQuestionIdState}`)) {
+      return JSON.parse(
+        localStorage.getItem(`${currentQuestionIdState}`) as string
+      );
+    }
+    return currentObject?.answers;
+  }
+
   return currentQuestionIdState === questionData.length ? (
     <div className="multi">
       <div className="multi__content">
-        <div className="multi__text"></div>
-        <div className="multi__answers"></div>
+        <div className="multi__text">{currentObject?.text}</div>
+        <div className="multi__answers">
+          {" "}
+          {takeCurrentObjectInformation().map(
+            (answer: { text: string; isChecked: boolean }) => {
+              return (
+                <Answer
+                  currentQuestionId={currentQuestionIdState}
+                  currentQuestion={currentObject}
+                  answerData={answer}
+                  key={answer.text}
+                />
+              );
+            }
+          )}
+        </div>
       </div>
       <button
         className="multi__button-end"
@@ -36,15 +59,18 @@ export const Multichoice: React.FC<Props> = ({
       <div className="multi__content">
         <div className="multi__text">{currentObject?.text}</div>
         <div className="multi__answers">
-          {currentObject?.answers.map((answer) => {
-            return (
-              <Answer
-                currentQuestionId={currentQuestionIdState}
-                answerData={answer}
-                key={answer.text}
-              />
-            );
-          })}
+          {takeCurrentObjectInformation().map(
+            (answer: { text: string; isChecked: boolean }) => {
+              return (
+                <Answer
+                  currentQuestionId={currentQuestionIdState}
+                  currentQuestion={currentObject}
+                  answerData={answer}
+                  key={answer.text}
+                />
+              );
+            }
+          )}
         </div>
       </div>
       <button
