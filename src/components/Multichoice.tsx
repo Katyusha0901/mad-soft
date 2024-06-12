@@ -1,7 +1,6 @@
 import React from "react";
 import { questionObject } from "../types";
 import { questionData } from "../QuestionData";
-import { useState } from "react";
 import { Answer } from "./Answer";
 
 interface Props {
@@ -17,9 +16,6 @@ export const Multichoice: React.FC<Props> = ({
   setIsTestCompletedFunction,
   setCurrentQuestionIdFunction,
 }) => {
-  const [answers, setAnswers] = useState<string[] | undefined>(
-    currentObject?.answers
-  );
   return currentQuestionIdState === questionData.length ? (
     <div className="multi">
       <div className="multi__content">
@@ -40,8 +36,14 @@ export const Multichoice: React.FC<Props> = ({
       <div className="multi__content">
         <div className="multi__text">{currentObject?.text}</div>
         <div className="multi__answers">
-          {currentObject?.answers.map((answer: string, index: number) => {
-            return <Answer answerData={answer} />;
+          {currentObject?.answers.map((answer) => {
+            return (
+              <Answer
+                currentQuestionId={currentQuestionIdState}
+                answerData={answer}
+                key={answer.text}
+              />
+            );
           })}
         </div>
       </div>

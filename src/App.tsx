@@ -1,16 +1,18 @@
 import React from "react";
-import { useState } from "react";
-import { questionData } from "./QuestionData";
+import { useState, useContext } from "react";
 import { Multichoice } from "./components/Multichoice";
 import { Onechoice } from "./components/Onechoice";
 import { ShortAnswer } from "./components/ShortAnswer";
 import { LongAnswer } from "./components/LongAnswer";
+import { QuestionsContext } from "./QuestionsContext";
 
 export function App() {
   const [currentQuestionId, setCurrentQuestionId] = useState<number>(1);
   const [isTestCompleted, setIsTestCompleted] = useState<boolean>(false);
+  const { questions } = useContext(QuestionsContext);
+
   function currentQuestionInformation() {
-    return questionData.find((object) => object.id === currentQuestionId);
+    return questions.find((object) => object.id === currentQuestionId);
   }
 
   return isTestCompleted ? (
@@ -21,6 +23,7 @@ export function App() {
       currentQuestionIdState={currentQuestionId}
       setIsTestCompletedFunction={setIsTestCompleted}
       setCurrentQuestionIdFunction={setCurrentQuestionId}
+      // changeQuestionDataFunction={changeQuestionData}
     />
   ) : currentQuestionInformation()?.type === "onechoice" ? (
     <Onechoice
