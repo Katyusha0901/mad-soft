@@ -24,35 +24,4 @@ export function App() {
       setCurrentQuestionIdFunction={setCurrentQuestionId}
     />
   );
-  // currentQuestionInformation()?.type === "multichoice" ? (
-  //   <Multichoice
-  //     currentObject={currentQuestionInformation()}
-  //     currentQuestionIdState={currentQuestionId}
-  //     setIsTestCompletedFunction={setIsTestCompleted}
-  //     setCurrentQuestionIdFunction={setCurrentQuestionId}
-  //   />
-  // ) : currentQuestionInformation()?.type === "onechoice" ? (
-  //   <Onechoice
-  //     currentObject={currentQuestionInformation()}
-  //     currentQuestionIdState={currentQuestionId}
-  //     setIsTestCompletedFunction={setIsTestCompleted}
-  //     setCurrentQuestionIdFunction={setCurrentQuestionId}
-  //   />
-  // ) : currentQuestionInformation()?.type === "shortAnswer" ? (
-  //   <ShortAnswer
-  //     currentObject={currentQuestionInformation()}
-  //     currentQuestionIdState={currentQuestionId}
-  //     setIsTestCompletedFunction={setIsTestCompleted}
-  //     setCurrentQuestionIdFunction={setCurrentQuestionId}
-  //   />
-  // ) : currentQuestionInformation()?.type === "longAnswer" ? (
-  //   <LongAnswer
-  //     currentObject={currentQuestionInformation()}
-  //     currentQuestionIdState={currentQuestionId}
-  //     setIsTestCompletedFunction={setIsTestCompleted}
-  //     setCurrentQuestionIdFunction={setCurrentQuestionId}
-  //   />
-  // ) : (
-  //   <div></div>
-  // );
 }

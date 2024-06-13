@@ -68,7 +68,31 @@ export const Answer: React.FC<Props> = ({
       JSON.stringify(newQuestions[currentQuestionId - 1].answers)
     );
   }
-  return (
+
+  function changeShortAnswerQuestion(answer: {
+    text: string;
+    isChecked: boolean;
+  }) {
+    const newQuestions = questions.map((question: questionObject) => {
+      if (question.id === currentQuestionId) {
+        return {
+          id: question.id,
+          type: question.type,
+          text: question.text,
+          answers: [answer],
+        };
+      }
+      return question;
+    });
+    setQuestions(newQuestions);
+    localStorage.setItem(
+      `${currentQuestionId}`,
+      JSON.stringify(newQuestions[currentQuestionId - 1].answers)
+    );
+  }
+
+  return currentQuestion?.type === "multichoice" ||
+    currentQuestion?.type === "onechoice" ? (
     <div className="answer">
       <div
         className="answer__checkbox"
@@ -86,6 +110,34 @@ export const Answer: React.FC<Props> = ({
         {answerData.isChecked ? "✔" : null}
       </div>
       <div className="answer__text">{answerData.text}</div>
+    </div>
+  ) : (
+    <div className="answer">
+      <div className="answer__text">Ответ:</div>
+      <input
+        className="answer__input"
+        value={answerData.text}
+        onChange={(e) => {
+          // if (
+          //   e.target.value === "да" ||
+          //   e.target.value === "Да" ||
+          //   e.target.value === "ДА" ||
+          //   e.target.value === "нет" ||
+          //   e.target.value === "Нет" ||
+          //   e.target.value === "НЕТ"
+          // ) {
+          changeShortAnswerQuestion({
+            text: e.target.value,
+            isChecked: true,
+          });
+          // } else {
+          //   changeShortAnswerQuestion({
+          //     text: "Ответ",
+          //     isChecked: false,
+          //   });
+          // }
+        }}
+      />
     </div>
   );
 };

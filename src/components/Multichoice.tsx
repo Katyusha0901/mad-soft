@@ -30,7 +30,6 @@ export const Multichoice: React.FC<Props> = ({
       <div className="multi__content">
         <div className="multi__text">{currentObject?.text}</div>
         <div className="multi__answers">
-          {" "}
           {takeCurrentObjectInformation().map(
             (answer: { text: string; isChecked: boolean }) => {
               return (

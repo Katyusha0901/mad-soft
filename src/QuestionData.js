@@ -25,16 +25,16 @@ export const questionData = [
       },
     ],
   },
-  //   {
-  //     id: 3,
-  //     type: "shortAnswer",
-  //     text: "Сколько у вас в классе друзей?",
-  //     answers: [],
-  //   },
+  {
+    id: 3,
+    type: "shortAnswer",
+    text: "У вас в классе есть друзья? Ответьте да/нет.",
+    answers: [{ text: "ответ", isChecked: false }],
+  },
   //   {
   //     id: 4,
   //     type: "longAnswer",
-  //     text: "Вам нравится учиться?",
+  //     text: "Вам нравится учиться? Почемы",
   //     answers: [],
   //   },
   //   {
